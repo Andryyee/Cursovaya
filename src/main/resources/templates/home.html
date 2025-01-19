@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашняя страница</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px 20px;
+        }
+
+        .logout a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-btn {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .dropdown-btn:hover {
+            background-color: #444;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #333;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #575757;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .content{
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, 0%); /* Смещает элемент на 50% его размера вверх и влево */
+            width: 400px;
+            height: 100px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="logout">
+        <a href="/logout">Выход</a>
+    </div>
+    <div class="dropdown">
+        <button class="dropdown-btn">Меню</button>
+        <div class="dropdown-content">
+            <a href="/profile">Профиль</a>
+            <a href="#">Настройки</a>
+            <a href="admin/userlist" sec:authorize="hasRole('ADMIN')">Перейти в список пользователей</a>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <h1>Добро пожаловать на домашнюю страницу!</h1>
+</div>
+<p th:text="${message}"></p>
+
+<form th:action="@{/start}" method="POST">
+    <button type="submit">Начать работу</button>
+</form>
+
+<form th:action="@{/end}" method="POST">
+    <button type="submit">Закончить работу</button>
+</form>
+
+<a href="/vacation">Запросить отпуск</a>
+</body>
+</html>

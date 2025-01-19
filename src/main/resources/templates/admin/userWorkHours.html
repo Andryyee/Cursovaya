@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Начало работы</th>
+        <th>Конец работы</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Перебираем список пользователей и выводим их данные -->
+    <tr th:each="workHours : ${userWorkHours}">
+        <td th:text="${workHours.start}"></td>
+        <td th:text="${workHours.end}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Ссылка на страницу создания нового пользователя -->
+<a href="/admin/userlist">Назад</a>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+</head>
+<body>
+<h2>Регистрация</h2>
+<form th:action="@{/register}" method="POST">
+    <label for="firstName">Имя:</label>
+    <input type="text" id="firstName" name="firstName" required><br><br>
+
+    <label for="lastName">Фамилия:</label>
+    <input type="text" id="lastName" name="lastName" required><br><br>
+
+    <label for="username">Логин:</label>
+    <input type="text" id="username" name="username" required><br><br>
+
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <label for="confirmPassword">Подтвердите пароль:</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
+
+    <label for="role">Роль:</label>
+    <select name="role" id="role" required>
+        <option value="USER">Пользователь</option>
+        <option value="ADMIN">Администратор</option>
+    </select><br><br>
+
+    <button type="submit">Зарегистрироваться</button>
+</form>
+
+<!-- Вывод ошибок -->
+<div>
+    <p th:if="${param.error} == 'passwordsNotMatching'">Пароли не совпадают.</p>
+    <p th:if="${param.error} == 'usernameExists'">Пользователь с таким логином уже существует.</p>
+    <p th:if="${param.error} == 'emailExists'">Пользователь с таким email уже существует.</p>
+</div>
+</body>
+</html>

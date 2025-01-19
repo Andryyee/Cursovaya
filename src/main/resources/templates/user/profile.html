@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль пользователя</title>
+</head>
+    <body>
+        <h1>Профиль пользователя</h1>
+
+        <p><strong>Имя:</strong> <span th:text="${firstName}"></span></p>
+        <p><strong>Фамилия:</strong> <span th:text="${lastName}"></span></p>
+        <p><strong>Имя аккаунта:</strong> <span th:text="${username}"></span></p>
+        <p><strong>Роль:</strong> <span th:text="${role}"></span></p>
+
+        <a href="/home">Перейти на домашнюю страницу</a>
+    </body>
+</html>

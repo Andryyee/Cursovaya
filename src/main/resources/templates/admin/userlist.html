@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список пользователей</title>
+</head>
+<body>
+<h1>Список пользователей</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Имя аккаунта</th>
+        <th>Роль</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Перебираем список пользователей и выводим их данные -->
+    <tr th:each="user : ${users}">
+        <td th:text="${user.firstName}"></td>
+        <td th:text="${user.lastName}"></td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.role}"></td>
+        <td>
+            <!-- Кнопка для удаления пользователя -->
+            <form th:action="@{/admin/deleteUser/{username}(username=${user.username})}" method="post">
+                <button type="submit">Удалить</button>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/admin/userWorkHours/{username}(username=${user.username})}" method="post">
+                <button type="submit">Отработанное время</button>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/admin/vacationList/{username}(username=${user.username})}" method="post">
+                <button type="submit">Заявления на отпуск</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Ссылка на страницу создания нового пользователя -->
+<a href="/createNewUser">Создать нового пользователя</a><br>
+<a href="/home">На домашнюю страницу</a>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Список отпусков</title>
+</head>
+<body>
+<h1>Список ваших запросов на отпуск</h1>
+<table border="1">
+    <tr>
+        <th>Дата подачи</th>
+        <th>Дата начала</th>
+        <th>Дата конца</th>
+        <th>Статус</th>
+    </tr>
+    <th:block th:each="vacation : ${vacations}">
+        <tr>
+            <td th:text="${vacation.date}"></td>
+            <td th:text="${vacation.start}"></td>
+            <td th:text="${vacation.end}"></td>
+            <td th:text="${vacation.status == -1 ? 'Отклонено' : (vacation.status == 0 ? 'В обработке' : 'Принято')}"></td>
+            <td>
+                <form th:action="@{/confirmReject/{result}/{vacation_id}(result=1, vacation_id=${vacation.id})}" method="post">
+                    <button type="submit">Подтвердить</button>
+                </form></td>
+            <td>
+                <form th:action="@{/confirmReject/{result}/{vacation_id}(result=-1, vacation_id=${vacation.id})}" method="post">
+                    <button type="submit">Отклонить</button>
+                </form>
+            </td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

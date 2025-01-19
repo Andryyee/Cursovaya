@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Запрос на отпуск</title>
+</head>
+<body>
+<h1>Запрос на отпуск</h1>
+<form th:action="@{/vacationRequest}" method="POST">
+  <label for="start">Дата начала:</label>
+  <input type="date" id="start" name="s" required>
+  <br>
+  <label for="end">Дата конца:</label>
+  <input type="date" id="end" name="e" required>
+  <br>
+  <button type="submit">Отправить запрос</button>
+</form>
+</body>
+</html>
